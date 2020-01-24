@@ -5,6 +5,7 @@ export default class World {
     chunks = [];
     updates = [];
     workers = [];
+    updatesCount = 0;
     onWorldUpdate = () => {};
 
     add(particle) {
@@ -30,8 +31,9 @@ export default class World {
 
     registerUpdates(event) {
         this.updates[event.data.chunkIndex] = event.data.updates;
+        this.updatesCount += 1;
 
-        if (this.updates.length && this.updates.length === this.chunks.length) {
+        if (this.updatesCount === this.chunks.length) {
             this.applyUpdates();
         }
     }
@@ -55,6 +57,7 @@ export default class World {
         }
 
         this.updates = [];
+        this.updatesCount = 0;
         this.onWorldUpdate();
     }
 
