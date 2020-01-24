@@ -27,7 +27,7 @@ export default class Renderer {
 
             let invv = 1 / Math.sqrt(
                 Math.pow(p.pos.x - p.oldPos.x, 2) + Math.pow(p.pos.y - p.oldPos.y, 2)
-            ) / 50;
+            ) / 10;
             
             ctx.beginPath();
             ctx.arc(p.pos.x, p.pos.y, 1, 0, Math.PI * 2);

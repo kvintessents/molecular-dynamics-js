@@ -1,12 +1,12 @@
 import Particle from './Particle.js';
 import World from './World.js';
 import Renderer from './Renderer.js';
+import UserParticleCreator from './UserParticleCreator.js';
 
 
 const world = new World();
 world.initWorkers(4);
 const renderer = new Renderer('#canvas', world);
-
 
 // Demo data
 const offsetX = 100;
@@ -16,12 +16,12 @@ for (let x = 0; x < 20; x++) {
     for (let y = 0; y < 20; y++) {
         world.add(new Particle(
             {
-                x: x * 3.2 + offsetX, 
-                y: y * 3.2 + offsetY
+                x: x * 5.4 + offsetX, 
+                y: y * 5.4 + offsetY
             },
             {
-                x: 0, // (0.5 - Math.random()) / 1000,
-                y: 0 // (0.5 - Math.random()) / 1000
+                x: (0.5 - Math.random()) / 5,
+                y: (0.5 - Math.random()) / 5
             }
         ));
     }
