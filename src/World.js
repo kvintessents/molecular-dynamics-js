@@ -5,6 +5,7 @@ export default class World {
     chunks = [];
     updates = [];
     workers = [];
+    onWorldUpdate = () => {};
 
     add(particle) {
         this.particles.push(particle);
@@ -54,6 +55,7 @@ export default class World {
         }
 
         this.updates = [];
+        this.onWorldUpdate();
     }
 
     updateParticles(dt) {

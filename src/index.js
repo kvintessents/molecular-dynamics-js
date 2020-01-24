@@ -12,16 +12,16 @@ const renderer = new Renderer('#canvas', world);
 const offsetX = 100;
 const offsetY = 100;
 
-for (let x = 0; x < 30; x++) {
-    for (let y = 0; y < 20; y++) {
+for (let x = 0; x < 10; x++) {
+    for (let y = 0; y < 10; y++) {
         world.add(new Particle(
             {
-                x: x * 4 + offsetX, 
-                y: y * 4 + offsetY
+                x: x * 5 + offsetX, 
+                y: y * 5 + offsetY
             },
             {
-                x: (0.5 - Math.random()) / 10,
-                y: (0.5 - Math.random()) / 10
+                x: (0.5 - Math.random()) / 100,
+                y: (0.5 - Math.random()) / 100
             }
         ));
     }
@@ -30,18 +30,22 @@ for (let x = 0; x < 30; x++) {
 world.optimiseChunks();
 
 // Main loop
-const stepsPerFrame = 1;
-const dt = 0.0001 / stepsPerFrame;
+const stepsPerFrame = 20;
+const dt = 0.001 / stepsPerFrame;
 const ffps = 0;
 
-function update() {
+const worldCycle = () => new Promise(resolve => {
+    world.onWorldUpdate = resolve;
+    world.updateParticles(dt);
+});
+
+async function update() {
     for (let i = 0; i < stepsPerFrame; i++) {
-        world.updateParticles(dt);
+        await worldCycle();
     }
     
     renderer.renderParticles();
-
-        requestAnimationFrame(update);
+    requestAnimationFrame(update);
 }
 
 update();
