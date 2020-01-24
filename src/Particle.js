@@ -1,3 +1,5 @@
+let incrementedId = 0;
+
 export default class Particle {
     name = 'Argon';
     pos = {x: 0, y: 0};
@@ -5,6 +7,7 @@ export default class Particle {
     epsilon = 0.997; // kJ/mol
     sigma = 3.40;
     mass = 1;
+    id = incrementedId++;
 
     constructor(position, initVelocity) {
         this.pos = position;

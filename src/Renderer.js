@@ -24,9 +24,14 @@ export default class Renderer {
 
         for (let i = 0; i < this.world.particles.length; i++) {
             const p = this.world.particles[i];
+
+            let invv = 1 / Math.sqrt(
+                Math.pow(p.pos.x - p.oldPos.x, 2) + Math.pow(p.pos.y - p.oldPos.y, 2)
+            ) / 50;
             
             ctx.beginPath();
             ctx.arc(p.pos.x, p.pos.y, 1, 0, Math.PI * 2);
+            ctx.fillStyle = `rgb(${255 / invv}, 0, 0)`;
             ctx.fill();
         }
     }
