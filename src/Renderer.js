@@ -14,6 +14,10 @@ export default class Renderer {
         this.height = this.canvas.height;
     }
 
+    setCamera(newCamera) {
+        this.camera = newCamera;
+    }
+
     setWorld(newWorld) {
         this.world = newWorld;
     }
