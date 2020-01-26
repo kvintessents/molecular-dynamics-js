@@ -5,7 +5,7 @@ import UserController from './UserController';
 import Camera from './Camera';
 
 const world = new World();
-world.initWorkers(4);
+world.initWorkers(8);
 const camera = new Camera();
 const renderer = new Renderer('#canvas', world, camera);
 const userController = new UserController('#canvas', camera);
@@ -13,18 +13,18 @@ const userController = new UserController('#canvas', camera);
 // Demo data
 const offsetX = 220;
 const offsetY = 220;
-const dist = 4.4;
+const dist = 3.4;
 
-for (let x = 0; x < 5; x++) {
-    for (let y = 0; y < 5; y++) {
+for (let x = 0; x < 20; x++) {
+    for (let y = 0; y < 20; y++) {
         world.add(new Particle(
             {
                 x: x * dist + offsetX, 
                 y: y * dist + offsetY
             },
             {
-                x: (0.5 - Math.random()) / 1000,
-                y: (0.5 - Math.random()) / 1000
+                x: (0.5 - Math.random()) / 10,
+                y: (0.5 - Math.random()) / 10
             }
         ));
     }
@@ -33,8 +33,8 @@ for (let x = 0; x < 5; x++) {
 world.optimiseChunks();
 
 // Main loop
-const stepsPerFrame = 10;
-const dt = 0.0001 / stepsPerFrame;
+const stepsPerFrame = 5;
+const dt = 0.01 / stepsPerFrame;
 const ffps = 1;
 
 const worldCycle = () => new Promise(resolve => {
