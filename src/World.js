@@ -13,8 +13,9 @@ export default class World {
     }
 
     optimiseChunks() {
-        const particlesPerWorker = Math.floor(this.particles.length / this.workers.length);
+        const particlesPerWorker = Math.ceil(this.particles.length / this.workers.length);
         this.chunks = chunkArray(this.particles, particlesPerWorker);
+        console.log(this.chunks);
     }
 
     initWorkers(num = 2) {
